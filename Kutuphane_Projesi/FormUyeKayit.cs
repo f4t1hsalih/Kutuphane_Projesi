@@ -30,7 +30,7 @@ namespace Kutuphane_Projesi
         }
         void Listele()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select U.UyeId,U.UyeAd,U.UyeSoyad, U.UyeCinsiyet,U.UyeTelefon,U.UyeEPosta,A.AdresilAdi,Al.AdresilceAdi,U.UyeAdresTam,U.UyeAdresilid,U.UyeAdresilceid from Uyeler U inner join Adresil A on U.UyeAdresilid=A.Adresilid inner join Adresilce Al on U.UyeAdresilceid=Al.Adresilceid ", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select U.UyeId, U.UyeAd, U.UyeSoyad, U.UyeCinsiyet, U.UyeTelefon, U.UyeEPosta, A.AdresilAdi, Al.AdresilceAdi, U.UyeAdresTam, U.UyeAdresilid, U.UyeAdresilceid from Uyeler U inner join Adresil A on U.UyeAdresilid = A.Adresilid  inner join Adresilce Al on U.UyeAdresilceid = Al.Adresilceid where UyeSilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridViewUyeler.DataSource = dt;
@@ -157,7 +157,7 @@ namespace Kutuphane_Projesi
         {
             if (id != 0)
             {
-                SqlCommand komut = new SqlCommand("delete from Uyeler where UyeId=@p1", bag.baglanti());
+                SqlCommand komut = new SqlCommand("update Uyeler set UyeSilinme = 1 where UyeId = @p1", bag.baglanti());
                 komut.Parameters.AddWithValue("@p1", id);
                 komut.ExecuteNonQuery();
                 bag.baglanti().Close();
