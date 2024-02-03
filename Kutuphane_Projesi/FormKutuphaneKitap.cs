@@ -22,7 +22,7 @@ namespace Kutuphane_Projesi
             comboBoxKitapAdi.SelectedIndex = 0;
             maskedTextBoxAdet.Clear();
             comboBoxKutuphaneAdi.Enabled = true;
-            comboBoxKitapAdi.Enabled= true;
+            comboBoxKitapAdi.Enabled = true;
         }
         void Listele()
         {

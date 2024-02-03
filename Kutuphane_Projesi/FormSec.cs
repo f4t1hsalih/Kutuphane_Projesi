@@ -21,7 +21,7 @@ namespace Kutuphane_Projesi
         {
             if (secimid == 1)
             {
-                SqlDataAdapter da = new SqlDataAdapter("select U.UyeId AS 'Üye ID', U.UyeAd AS 'Adı', U.UyeSoyad AS 'Soyadı', U.UyeCinsiyet AS 'Cinsiyet', U.UyeTelefon AS 'Telefon', U.UyeEPosta AS 'Eposta', U.UyePuan AS 'Puan', U.UyeDurum AS 'Durum' from Uyeler U", bag.baglanti());
+                SqlDataAdapter da = new SqlDataAdapter("select U.UyeId AS 'Üye ID', U.UyeAd AS 'Adı', U.UyeSoyad AS 'Soyadı', U.UyeCinsiyet AS 'Cinsiyet', U.UyeTelefon AS 'Telefon', U.UyeEPosta AS 'Eposta', U.UyePuan AS 'Puan', U.UyeDurum AS 'Durum' from Uyeler U where UyeSilinme = 0", bag.baglanti());
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridViewSec.DataSource = dt;

@@ -27,7 +27,7 @@ namespace Kutuphane_Projesi
         }
         void Listele()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select * from Yazar", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select * from Yazar where YazarSilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridViewYazarlar.DataSource = dt;
@@ -74,7 +74,7 @@ namespace Kutuphane_Projesi
         {
             if (id != 0)
             {
-                SqlCommand komut = new SqlCommand("delete from Yazar where YazarId=@p1", bag.baglanti());
+                SqlCommand komut = new SqlCommand("update Yazar set YazarSilinme = 1 where YazarId = @p1", bag.baglanti());
                 komut.Parameters.AddWithValue("@p1", id);
                 komut.ExecuteNonQuery();
                 bag.baglanti().Close();

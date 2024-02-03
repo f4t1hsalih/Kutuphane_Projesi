@@ -37,11 +37,6 @@
             this.buttonGuncelle = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewYazarlar = new System.Windows.Forms.DataGridView();
-            this.YazarId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YazarAdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YazarSoyadi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YazarCinsiyet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YazarDogumTarihi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePickerDTarihi = new System.Windows.Forms.DateTimePicker();
             this.radioButtonKadin = new System.Windows.Forms.RadioButton();
@@ -54,6 +49,12 @@
             this.buttonKaydet = new System.Windows.Forms.Button();
             this.textBoxAd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.YazarId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YazarAdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YazarSoyadi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YazarCinsiyet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YazarDogumTarihi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YazarSilinme = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -158,7 +159,8 @@
             this.YazarAdi,
             this.YazarSoyadi,
             this.YazarCinsiyet,
-            this.YazarDogumTarihi});
+            this.YazarDogumTarihi,
+            this.YazarSilinme});
             this.dataGridViewYazarlar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewYazarlar.Location = new System.Drawing.Point(3, 20);
             this.dataGridViewYazarlar.MultiSelect = false;
@@ -168,42 +170,6 @@
             this.dataGridViewYazarlar.Size = new System.Drawing.Size(638, 306);
             this.dataGridViewYazarlar.TabIndex = 1;
             this.dataGridViewYazarlar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewYazarlar_CellDoubleClick);
-            // 
-            // YazarId
-            // 
-            this.YazarId.DataPropertyName = "YazarId";
-            this.YazarId.HeaderText = "Column1";
-            this.YazarId.Name = "YazarId";
-            this.YazarId.ReadOnly = true;
-            this.YazarId.Visible = false;
-            // 
-            // YazarAdi
-            // 
-            this.YazarAdi.DataPropertyName = "YazarAdi";
-            this.YazarAdi.HeaderText = "Ad";
-            this.YazarAdi.Name = "YazarAdi";
-            this.YazarAdi.ReadOnly = true;
-            // 
-            // YazarSoyadi
-            // 
-            this.YazarSoyadi.DataPropertyName = "YazarSoyadi";
-            this.YazarSoyadi.HeaderText = "Soyad";
-            this.YazarSoyadi.Name = "YazarSoyadi";
-            this.YazarSoyadi.ReadOnly = true;
-            // 
-            // YazarCinsiyet
-            // 
-            this.YazarCinsiyet.DataPropertyName = "YazarCinsiyet";
-            this.YazarCinsiyet.HeaderText = "Cinsiyet";
-            this.YazarCinsiyet.Name = "YazarCinsiyet";
-            this.YazarCinsiyet.ReadOnly = true;
-            // 
-            // YazarDogumTarihi
-            // 
-            this.YazarDogumTarihi.DataPropertyName = "YazarDogumTarihi";
-            this.YazarDogumTarihi.HeaderText = "Doğum Tarihi";
-            this.YazarDogumTarihi.Name = "YazarDogumTarihi";
-            this.YazarDogumTarihi.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -338,6 +304,52 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Doğum Tarihi:";
             // 
+            // YazarId
+            // 
+            this.YazarId.DataPropertyName = "YazarId";
+            this.YazarId.HeaderText = "ID";
+            this.YazarId.Name = "YazarId";
+            this.YazarId.ReadOnly = true;
+            this.YazarId.Visible = false;
+            // 
+            // YazarAdi
+            // 
+            this.YazarAdi.DataPropertyName = "YazarAdi";
+            this.YazarAdi.HeaderText = "Ad";
+            this.YazarAdi.Name = "YazarAdi";
+            this.YazarAdi.ReadOnly = true;
+            // 
+            // YazarSoyadi
+            // 
+            this.YazarSoyadi.DataPropertyName = "YazarSoyadi";
+            this.YazarSoyadi.HeaderText = "Soyad";
+            this.YazarSoyadi.Name = "YazarSoyadi";
+            this.YazarSoyadi.ReadOnly = true;
+            // 
+            // YazarCinsiyet
+            // 
+            this.YazarCinsiyet.DataPropertyName = "YazarCinsiyet";
+            this.YazarCinsiyet.HeaderText = "Cinsiyet";
+            this.YazarCinsiyet.Name = "YazarCinsiyet";
+            this.YazarCinsiyet.ReadOnly = true;
+            // 
+            // YazarDogumTarihi
+            // 
+            this.YazarDogumTarihi.DataPropertyName = "YazarDogumTarihi";
+            this.YazarDogumTarihi.HeaderText = "Doğum Tarihi";
+            this.YazarDogumTarihi.Name = "YazarDogumTarihi";
+            this.YazarDogumTarihi.ReadOnly = true;
+            // 
+            // YazarSilinme
+            // 
+            this.YazarSilinme.DataPropertyName = "YazarSilinme";
+            this.YazarSilinme.HeaderText = "Yazar Silinme";
+            this.YazarSilinme.Name = "YazarSilinme";
+            this.YazarSilinme.ReadOnly = true;
+            this.YazarSilinme.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.YazarSilinme.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.YazarSilinme.Visible = false;
+            // 
             // FormYazarKayit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,5 +405,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn YazarSoyadi;
         private System.Windows.Forms.DataGridViewTextBoxColumn YazarCinsiyet;
         private System.Windows.Forms.DataGridViewTextBoxColumn YazarDogumTarihi;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn YazarSilinme;
     }
 }
