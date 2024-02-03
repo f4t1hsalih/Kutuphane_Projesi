@@ -26,15 +26,15 @@ namespace Kutuphane_Projesi
             SqlDataReader dr = komut.ExecuteReader();
             while (dr.Read()) chart1.Series["Kitap"].Points.AddXY(dr[0], dr[1]);
 
-            SqlCommand komut1 = new SqlCommand("select Count(KitapAdi) from Kitap", bag.baglanti());
+            SqlCommand komut1 = new SqlCommand("select Count(KitapAdi) from Kitap where KitapSilinme = 0", bag.baglanti());
             dr = komut1.ExecuteReader();
             while (dr.Read()) labelSorgu1.Text = dr[0].ToString();
 
-            SqlCommand komut2 = new SqlCommand("select count(DISTINCT KTurId) from Kitap ", bag.baglanti());
+            SqlCommand komut2 = new SqlCommand("select count(DISTINCT KTurId) from Kitap where KitapSilinme = 0", bag.baglanti());
             dr = komut2.ExecuteReader();
             while (dr.Read()) labelSorgu2.Text = dr[0].ToString();
 
-            SqlCommand komut3 = new SqlCommand("select avg(KitapSayfa) from Kitap", bag.baglanti());
+            SqlCommand komut3 = new SqlCommand("select avg(KitapSayfa) from Kitap where KitapSilinme = 0", bag.baglanti());
             dr = komut3.ExecuteReader();
             while (dr.Read()) labelSorgu3.Text = dr[0].ToString();
 

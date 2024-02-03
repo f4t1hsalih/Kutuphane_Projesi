@@ -21,14 +21,14 @@ namespace Kutuphane_Projesi
         {
             if (secimid == 1)
             {
-                SqlDataAdapter da = new SqlDataAdapter("select U.UyeId AS 'Üye ID', U.UyeAd AS 'Adı', U.UyeSoyad AS 'Soyadı', U.UyeCinsiyet AS 'Cinsiyet', U.UyeTelefon AS 'Telefon', U.UyeEPosta AS 'Eposta', U.UyePuan AS 'Puan', U.UyeDurum AS 'Durum' from Uyeler U where UyeSilinme = 0", bag.baglanti());
+                SqlDataAdapter da = new SqlDataAdapter("select U.UyeId AS 'Üye ID', U.UyeAd AS 'Adı', U.UyeSoyad AS 'Soyadı', U.UyeCinsiyet AS 'Cinsiyet', U.UyeTelefon AS 'Telefon', U.UyeEPosta AS 'Eposta', U.UyePuan AS 'Puan', U.UyeDurum AS 'Durum' from Uyeler U where U.UyeSilinme = 0", bag.baglanti());
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridViewSec.DataSource = dt;
             }
             else if (secimid == 2)
             {
-                SqlDataAdapter da = new SqlDataAdapter("select K.KutuphaneId AS 'ID', K.KutuphaneAdi AS 'Adı', A.AdresilAdi AS 'İl', Ai.AdresilceAdi AS 'İlçe', K.KutuphaneAdresTam AS 'Adres' from Kutuphane K inner join Adresil A on K.KutuphaneAdresilid = A.Adresilid inner join Adresilce Ai on K.KutuphaneAdresilceid = Ai.Adresilceid", bag.baglanti());
+                SqlDataAdapter da = new SqlDataAdapter("select K.KutuphaneId AS 'ID', K.KutuphaneAdi AS 'Adı', A.AdresilAdi AS 'İl', Ai.AdresilceAdi AS 'İlçe', K.KutuphaneAdresTam AS 'Adres' from Kutuphane K inner join Adresil A on K.KutuphaneAdresilid = A.Adresilid inner join Adresilce Ai on K.KutuphaneAdresilceid = Ai.Adresilceid where K.KutuphaneSilinme = 0", bag.baglanti());
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridViewSec.DataSource = dt;
@@ -41,7 +41,7 @@ namespace Kutuphane_Projesi
                         f = (FormOduncVerme)x;
                 }
 
-                SqlDataAdapter da = new SqlDataAdapter("select K.KitapISBN AS 'ISBN', K.KitapAdi AS 'Adı', K.KitapSayfa AS 'Sayfa', Y.YazarAdi+' '+Y.YazarSoyadi AS 'Yazar', Ya.YEAdi AS 'Yayınevi', Kk.Adet AS 'Adet' from Kutuphane_Kitap Kk inner join Kitap K on Kk.KitapISBN = K.KitapISBN inner join Yazar Y on K.KYazarId = Y.YazarId inner join Yayinevi Ya on K.KYEId = Ya.YEId where KutuphaneId =" + f.kutuphaneid, bag.baglanti());
+                SqlDataAdapter da = new SqlDataAdapter("select K.KitapISBN AS 'ISBN', K.KitapAdi AS 'Adı', K.KitapSayfa AS 'Sayfa', Y.YazarAdi+' '+Y.YazarSoyadi AS 'Yazar', Ya.YEAdi AS 'Yayınevi', Kk.Adet AS 'Adet' from Kutuphane_Kitap Kk inner join Kitap K on Kk.KitapISBN = K.KitapISBN inner join Yazar Y on K.KYazarId = Y.YazarId inner join Yayinevi Ya on K.KYEId = Ya.YEId where KutuphaneId =" + f.kutuphaneid + " and K.KitapSilinme = 0", bag.baglanti());
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridViewSec.DataSource = dt;

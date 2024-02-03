@@ -50,7 +50,7 @@ namespace Kutuphane_Projesi
             comboBoxKitapYazar.DisplayMember = "YazarAd";
             comboBoxKitapYazar.ValueMember = "YazarId";
 
-            SqlDataAdapter da3 = new SqlDataAdapter("select YEId,YEAdi from Yayinevi", bag.baglanti());
+            SqlDataAdapter da3 = new SqlDataAdapter("select YEId, YEAdi from Yayinevi where YESilinme = 0", bag.baglanti());
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
             comboBoxYayinevi.DataSource = dt3;
@@ -133,7 +133,7 @@ namespace Kutuphane_Projesi
         {
             if (isbn != 0)
             {
-                SqlCommand komut = new SqlCommand("update Kitap set KitapAdi=@p2,KitapSayfa=@p3,KTurId=@p4,KYazarId=@p5,KYEId=@p6 where KitapISBN=@p1", bag.baglanti());
+                SqlCommand komut = new SqlCommand("update Kitap set KitapAdi=@p2, KitapSayfa=@p3, KTurId=@p4, KYazarId=@p5, KYEId=@p6 where KitapISBN=@p1", bag.baglanti());
                 komut.Parameters.AddWithValue("@p1", isbn);
                 komut.Parameters.AddWithValue("@p2", textBoxKitapAd.Text);
                 komut.Parameters.AddWithValue("@p3", maskedTextBoxSayfaSayisi.Text);

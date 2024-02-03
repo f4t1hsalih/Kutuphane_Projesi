@@ -26,7 +26,7 @@ namespace Kutuphane_Projesi
         }
         void Listele()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select Y.YEId, Y.YEAdi, Y.YEKurucusu, Y.YEKurulusTarihi, A.AdresilAdi, Al.AdresilceAdi, Y.YEAdresTam, Y.YEAdresilid, Y.YEAdresilceid from Yayinevi Y inner join Adresil A on Y.YEAdresilid = A.Adresilid inner join Adresilce Al on Y.YEAdresilceid = Al.Adresilceid", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select Y.YEId, Y.YEAdi, Y.YEKurucusu, Y.YEKurulusTarihi, A.AdresilAdi, Al.AdresilceAdi, Y.YEAdresTam, Y.YEAdresilid, Y.YEAdresilceid from Yayinevi Y inner join Adresil A on Y.YEAdresilid = A.Adresilid inner join Adresilce Al on Y.YEAdresilceid = Al.Adresilceid where Y.YESilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridViewYayinevi.DataSource = dt;
@@ -104,7 +104,7 @@ namespace Kutuphane_Projesi
         {
             if (id != 0)
             {
-                SqlCommand komut = new SqlCommand("delete from Yayinevi where YEId=@p1", bag.baglanti());
+                SqlCommand komut = new SqlCommand("update Yayinevi set YESilinme = 1 where YEId=@p1", bag.baglanti());
                 komut.Parameters.AddWithValue("@p1", id);
                 komut.ExecuteNonQuery();
                 bag.baglanti().Close();
@@ -140,7 +140,7 @@ namespace Kutuphane_Projesi
         {
             if (comboBoxAil.SelectedValue != null)
             {
-                SqlDataAdapter da2 = new SqlDataAdapter("select Adresilceid,AdresilceAdi from Adresilce where Adresilid=" + comboBoxAil.SelectedValue, bag.baglanti());
+                SqlDataAdapter da2 = new SqlDataAdapter("select Adresilceid, AdresilceAdi from Adresilce where Adresilid=" + comboBoxAil.SelectedValue, bag.baglanti());
                 DataTable dt2 = new DataTable();
                 da2.Fill(dt2);
                 comboBoxAilce.DisplayMember = "AdresilceAdi";

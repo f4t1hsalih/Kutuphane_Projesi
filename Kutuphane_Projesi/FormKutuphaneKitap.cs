@@ -26,7 +26,7 @@ namespace Kutuphane_Projesi
         }
         void Listele()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select Kk.Id, Ku.KutuphaneAdi, K.KitapAdi, Kk.Adet from Kutuphane_Kitap Kk inner join Kutuphane Ku on Kk.KutuphaneId = Ku.KutuphaneId inner join Kitap K on Kk.KitapISBN = K.KitapISBN", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select Kk.Id, Ku.KutuphaneAdi, K.KitapAdi, Kk.Adet from Kutuphane_Kitap Kk inner join Kutuphane Ku on Kk.KutuphaneId = Ku.KutuphaneId inner join Kitap K on Kk.KitapISBN = K.KitapISBN where Ku.KutuphaneSilinme = 0 and K.KitapSilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridViewKutuphaneKitap.DataSource = dt;
@@ -43,14 +43,14 @@ namespace Kutuphane_Projesi
         {
             Listele();
 
-            SqlDataAdapter da = new SqlDataAdapter("select * from Kutuphane", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select * from Kutuphane where KutuphaneSilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             comboBoxKutuphaneAdi.DataSource = dt;
             comboBoxKutuphaneAdi.DisplayMember = "KutuphaneAdi";
             comboBoxKutuphaneAdi.ValueMember = "KutuphaneId";
 
-            SqlDataAdapter da2 = new SqlDataAdapter("select * from Kitap", bag.baglanti());
+            SqlDataAdapter da2 = new SqlDataAdapter("select * from Kitap where KitapSilinme = 0", bag.baglanti());
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
             comboBoxKitapAdi.DataSource = dt2;

@@ -15,19 +15,19 @@ namespace Kutuphane_Projesi
 
         private void FormYayineviIstatistik_Load(object sender, EventArgs e)
         {
-            SqlCommand komut = new SqlCommand("select Y.YEAdi,Count(K.KitapAdi) from Yayinevi Y inner join Kitap K on Y.YEId=K.KYEId group by Y.YEAdi", bag.baglanti());
+            SqlCommand komut = new SqlCommand("select Y.YEAdi, Count(K.KitapAdi) from Yayinevi Y inner join Kitap K on Y.YEId = K.KYEId where Y.YESilinme = 0 and K.KitapSilinme = 0 group by Y.YEAdi", bag.baglanti());
             SqlDataReader dr = komut.ExecuteReader();
             while (dr.Read()) chart1.Series["Yayınevi"].Points.AddXY(dr[0], dr[1]);
 
-            SqlCommand komut1 = new SqlCommand("select count(YEId) from Yayinevi", bag.baglanti());
+            SqlCommand komut1 = new SqlCommand("select count(YEId) from Yayinevi where YESilinme = 0", bag.baglanti());
             dr = komut1.ExecuteReader();
             while (dr.Read()) labelSorgu1.Text = dr[0].ToString();
 
-            SqlCommand komut2 = new SqlCommand("select top 1 Y.YEAdi from Yayinevi Y inner join Kitap K on Y.YEId=K.KYEId group by Y.YEAdi order by Count(K.KYEId) Desc", bag.baglanti());
+            SqlCommand komut2 = new SqlCommand("select top 1 Y.YEAdi from Yayinevi Y inner join Kitap K on Y.YEId = K.KYEId where Y.YESilinme = 0 and K.KitapSilinme = 0 group by Y.YEAdi order by Count(K.KYEId) Desc", bag.baglanti());
             dr = komut2.ExecuteReader();
             while (dr.Read()) labelSorgu2.Text = dr[0].ToString();
 
-            SqlCommand komut3 = new SqlCommand("select top 1 A.AdresilAdi from Yayinevi Y inner join Adresil A on Y.YEAdresilid=A.Adresilid group by A.AdresilAdi order by COUNT(Y.YEAdi) Desc", bag.baglanti());
+            SqlCommand komut3 = new SqlCommand("select top 1 A.AdresilAdi from Yayinevi Y inner join Adresil A on Y.YEAdresilid = A.Adresilid where Y.YESilinme = 0 group by A.AdresilAdi order by COUNT(Y.YEAdi) Desc", bag.baglanti());
             dr = komut3.ExecuteReader();
             while (dr.Read()) labelSorgu3.Text = dr[0].ToString();
 
