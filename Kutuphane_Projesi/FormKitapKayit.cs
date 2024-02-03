@@ -27,7 +27,7 @@ namespace Kutuphane_Projesi
         }
         void Listele()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select K.KitapISBN,K.KitapAdi,K.KitapSayfa,T.TurAdi,(Y.YazarAdi+' '+Y.YazarSoyadi)as YazarAdi,YE.YEAdi from Kitap K inner join Tur T on K.KTurId=T.TurId inner join Yazar Y on K.KYazarId=Y.YazarId inner join Yayinevi YE on K.KYEId=YE.YEId", bag.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("select K.KitapISBN,K.KitapAdi,K.KitapSayfa,T.TurAdi,(Y.YazarAdi+' '+Y.YazarSoyadi)as YazarAdi,YE.YEAdi from Kitap K inner join Tur T on K.KTurId=T.TurId inner join Yazar Y on K.KYazarId=Y.YazarId inner join Yayinevi YE on K.KYEId=YE.YEId where KitapSilinme = 0", bag.baglanti());
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridViewKitaplar.DataSource = dt;
@@ -43,7 +43,7 @@ namespace Kutuphane_Projesi
             comboBoxTur.DisplayMember = "TurAdi";
             comboBoxTur.ValueMember = "TurId";
 
-            SqlDataAdapter da2 = new SqlDataAdapter("select YazarId,(YazarAdi+' '+YazarSoyadi)as YazarAd from Yazar", bag.baglanti());
+            SqlDataAdapter da2 = new SqlDataAdapter("select YazarId,(YazarAdi+' '+YazarSoyadi)as YazarAd from Yazar where YazarSilinme = 0", bag.baglanti());
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
             comboBoxKitapYazar.DataSource = dt2;
@@ -99,7 +99,7 @@ namespace Kutuphane_Projesi
         {
             if (isbn != 0)
             {
-                SqlCommand komut = new SqlCommand("delete from Kitap where KitapISBN=@p1", bag.baglanti());
+                SqlCommand komut = new SqlCommand("update Kitap set KitapSilinme = 1 where KitapISBN=@p1", bag.baglanti());
                 komut.Parameters.AddWithValue("@p1", isbn);
                 komut.ExecuteNonQuery();
                 bag.baglanti().Close();
